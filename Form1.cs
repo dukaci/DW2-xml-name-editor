@@ -39,6 +39,9 @@ namespace DW2_xml_name_editor
                         textBoxArrayObjectIdElementName.Text = defaultIdElementName;
                      }
                   }
+
+                  // Automatically scan the file after selection
+                  ScanFile();
                }
                catch (Exception ex)
                {
@@ -121,6 +124,12 @@ namespace DW2_xml_name_editor
          }
 
          PopulateListBoxWithXmlElements(selectedXmlFilePath, idElementName, nameElementName);
+
+         // Check if no items are produced and log a message
+         if (listBoxXmlElements.Items.Count == 0)
+         {
+            LogMessage("No items produced. Please ensure the correct names are entered in the text fields.");
+         }
       }
 
       private void PopulateListBoxWithXmlElements(string filePath, string idElementName, string nameElementName)

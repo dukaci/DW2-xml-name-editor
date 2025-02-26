@@ -5,6 +5,7 @@
       private System.ComponentModel.IContainer components = null;
       private System.Windows.Forms.Button buttonSelectXmlFile;
       private System.Windows.Forms.TextBox textBoxLogger; // Add a TextBox for logging
+      private System.Windows.Forms.Label labelLogger; // Add a Label for the logger
       private System.Windows.Forms.ListBox listBoxXmlElements; // Add a ListBox for XML elements
       private System.Windows.Forms.TextBox textBoxArrayObjectIdElementName; // Add a TextBox for Array object ID element name
       private System.Windows.Forms.TextBox textBoxArrayObjectNameElementName; // Add a TextBox for Array object Name element name
@@ -30,6 +31,7 @@
       {
          buttonSelectXmlFile = new Button();
          textBoxLogger = new TextBox();
+         labelLogger = new Label();
          listBoxXmlElements = new ListBox();
          textBoxArrayObjectIdElementName = new TextBox();
          textBoxArrayObjectNameElementName = new TextBox();
@@ -49,9 +51,9 @@
          // buttonSelectXmlFile
          // 
          buttonSelectXmlFile.AllowDrop = true;
-         buttonSelectXmlFile.Location = new Point(12, 12);
+         buttonSelectXmlFile.Location = new Point(12, 177);
          buttonSelectXmlFile.Name = "buttonSelectXmlFile";
-         buttonSelectXmlFile.Size = new Size(150, 23);
+         buttonSelectXmlFile.Size = new Size(200, 23);
          buttonSelectXmlFile.TabIndex = 0;
          buttonSelectXmlFile.Text = "Select .xml file";
          buttonSelectXmlFile.UseVisualStyleBackColor = true;
@@ -62,20 +64,30 @@
          // textBoxLogger
          // 
          textBoxLogger.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-         textBoxLogger.Location = new Point(12, 50);
+         textBoxLogger.Location = new Point(12, 32);
          textBoxLogger.Multiline = true;
          textBoxLogger.Name = "textBoxLogger";
          textBoxLogger.ReadOnly = true;
-         textBoxLogger.Size = new Size(1033, 150);
+         textBoxLogger.Size = new Size(1033, 139);
          textBoxLogger.TabIndex = 1;
+         // 
+         // labelLogger
+         // 
+         labelLogger.BackColor = SystemColors.Control;
+         labelLogger.ForeColor = SystemColors.ActiveCaptionText;
+         labelLogger.Location = new Point(12, 9);
+         labelLogger.Name = "labelLogger";
+         labelLogger.Size = new Size(100, 20);
+         labelLogger.TabIndex = 14;
+         labelLogger.Text = "Logger";
          // 
          // listBoxXmlElements
          // 
          listBoxXmlElements.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
          listBoxXmlElements.ItemHeight = 15;
-         listBoxXmlElements.Location = new Point(12, 303);
+         listBoxXmlElements.Location = new Point(12, 288);
          listBoxXmlElements.Name = "listBoxXmlElements";
-         listBoxXmlElements.Size = new Size(388, 619);
+         listBoxXmlElements.Size = new Size(388, 649);
          listBoxXmlElements.TabIndex = 2;
          // 
          // textBoxArrayObjectIdElementName
@@ -93,14 +105,13 @@
          textBoxArrayObjectNameElementName.PlaceholderText = "Array object Name element name";
          textBoxArrayObjectNameElementName.Size = new Size(200, 23);
          textBoxArrayObjectNameElementName.TabIndex = 4;
-         // ...existing code...
-         textBoxArrayObjectNameElementName.Text = "Name"; // Set default value to "Name"
+         textBoxArrayObjectNameElementName.Text = "Name";
          // 
          // buttonScanFile
          // 
          buttonScanFile.Location = new Point(12, 206);
          buttonScanFile.Name = "buttonScanFile";
-         buttonScanFile.Size = new Size(75, 23);
+         buttonScanFile.Size = new Size(200, 23);
          buttonScanFile.TabIndex = 5;
          buttonScanFile.Text = "Scan File";
          buttonScanFile.UseVisualStyleBackColor = true;
@@ -108,9 +119,9 @@
          // 
          // buttonExtractDictionary
          // 
-         buttonExtractDictionary.Location = new Point(93, 206);
+         buttonExtractDictionary.Location = new Point(218, 176);
          buttonExtractDictionary.Name = "buttonExtractDictionary";
-         buttonExtractDictionary.Size = new Size(150, 23);
+         buttonExtractDictionary.Size = new Size(182, 23);
          buttonExtractDictionary.TabIndex = 6;
          buttonExtractDictionary.Text = "Extract Dictionary";
          buttonExtractDictionary.UseVisualStyleBackColor = true;
@@ -118,9 +129,9 @@
          // 
          // buttonUploadDictionary
          // 
-         buttonUploadDictionary.Location = new Point(250, 206);
+         buttonUploadDictionary.Location = new Point(218, 205);
          buttonUploadDictionary.Name = "buttonUploadDictionary";
-         buttonUploadDictionary.Size = new Size(150, 23);
+         buttonUploadDictionary.Size = new Size(182, 23);
          buttonUploadDictionary.TabIndex = 7;
          buttonUploadDictionary.Text = "Upload Dictionary";
          buttonUploadDictionary.UseVisualStyleBackColor = true;
@@ -128,9 +139,9 @@
          // 
          // buttonDictionarize
          // 
-         buttonDictionarize.Location = new Point(250, 264);
+         buttonDictionarize.Location = new Point(218, 263);
          buttonDictionarize.Name = "buttonDictionarize";
-         buttonDictionarize.Size = new Size(150, 23);
+         buttonDictionarize.Size = new Size(182, 23);
          buttonDictionarize.TabIndex = 11;
          buttonDictionarize.Text = "Dictionarize";
          buttonDictionarize.UseVisualStyleBackColor = true;
@@ -138,9 +149,9 @@
          // 
          // buttonMerge
          // 
-         buttonMerge.Location = new Point(718, 213);
+         buttonMerge.Location = new Point(861, 176);
          buttonMerge.Name = "buttonMerge";
-         buttonMerge.Size = new Size(75, 23);
+         buttonMerge.Size = new Size(184, 34);
          buttonMerge.TabIndex = 12;
          buttonMerge.Text = "Merge";
          buttonMerge.UseVisualStyleBackColor = true;
@@ -156,11 +167,11 @@
          dataGridViewDictionary.CausesValidation = false;
          dataGridViewDictionary.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
          dataGridViewDictionary.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2 });
-         dataGridViewDictionary.Location = new Point(406, 243);
+         dataGridViewDictionary.Location = new Point(406, 215);
          dataGridViewDictionary.MultiSelect = false;
          dataGridViewDictionary.Name = "dataGridViewDictionary";
          dataGridViewDictionary.SelectionMode = DataGridViewSelectionMode.CellSelect;
-         dataGridViewDictionary.Size = new Size(639, 686);
+         dataGridViewDictionary.Size = new Size(639, 722);
          dataGridViewDictionary.TabIndex = 9;
          dataGridViewDictionary.CellContentClick += dataGridViewDictionary_CellContentClick_1;
          // 
@@ -179,18 +190,18 @@
          // 
          // textBoxSearch
          // 
-         textBoxSearch.Location = new Point(406, 214);
+         textBoxSearch.Location = new Point(406, 183);
          textBoxSearch.Name = "textBoxSearch";
          textBoxSearch.PlaceholderText = "Search";
-         textBoxSearch.Size = new Size(306, 23);
+         textBoxSearch.Size = new Size(449, 23);
          textBoxSearch.TabIndex = 9;
          textBoxSearch.TextChanged += OnTextBoxSearchTextChanged;
          // 
          // buttonExportDictionary
          // 
-         buttonExportDictionary.Location = new Point(250, 235);
+         buttonExportDictionary.Location = new Point(218, 234);
          buttonExportDictionary.Name = "buttonExportDictionary";
-         buttonExportDictionary.Size = new Size(150, 23);
+         buttonExportDictionary.Size = new Size(182, 23);
          buttonExportDictionary.TabIndex = 13;
          buttonExportDictionary.Text = "Export Dictionary";
          buttonExportDictionary.UseVisualStyleBackColor = true;
@@ -201,6 +212,7 @@
          AutoScaleDimensions = new SizeF(7F, 15F);
          AutoScaleMode = AutoScaleMode.Font;
          ClientSize = new Size(1057, 944);
+         Controls.Add(labelLogger);
          Controls.Add(buttonMerge);
          Controls.Add(buttonDictionarize);
          Controls.Add(buttonUploadDictionary);
