@@ -177,6 +177,12 @@ namespace DW2_xml_name_editor
             saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             saveFileDialog.Title = "Save Dictionary";
 
+            if (!string.IsNullOrEmpty(selectedXmlFilePath))
+            {
+               string originalFileName = Path.GetFileNameWithoutExtension(selectedXmlFilePath);
+               saveFileDialog.FileName = $"dict_{originalFileName}.txt";
+            }
+
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                string filePath = saveFileDialog.FileName;
@@ -360,13 +366,23 @@ namespace DW2_xml_name_editor
                }
             }
 
-            string directory = Path.GetDirectoryName(selectedXmlFilePath);
-            string filenameWithoutExtension = Path.GetFileNameWithoutExtension(selectedXmlFilePath);
-            string extension = Path.GetExtension(selectedXmlFilePath);
-            string newFilePath = Path.Combine(directory, $"{filenameWithoutExtension}_Mod{extension}");
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+               saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+               saveFileDialog.Title = "Save Merged XML File";
 
-            xmlDoc.Save(newFilePath);
-            LogMessage($"Merged XML file saved to: {newFilePath}");
+               string directory = Path.GetDirectoryName(selectedXmlFilePath);
+               string filenameWithoutExtension = Path.GetFileNameWithoutExtension(selectedXmlFilePath);
+               string extension = Path.GetExtension(selectedXmlFilePath);
+               saveFileDialog.FileName = $"{filenameWithoutExtension}_Mod{extension}";
+
+               if (saveFileDialog.ShowDialog() == DialogResult.OK)
+               {
+                  string newFilePath = saveFileDialog.FileName;
+                  xmlDoc.Save(newFilePath);
+                  LogMessage($"Merged XML file saved to: {newFilePath}");
+               }
+            }
          }
          catch (Exception ex)
          {
@@ -417,5 +433,6 @@ namespace DW2_xml_name_editor
       {
 
       }
+
    }
 }

@@ -167,6 +167,7 @@
          dataGridViewDictionary.CausesValidation = false;
          dataGridViewDictionary.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
          dataGridViewDictionary.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2 });
+         dataGridViewDictionary.EditMode = DataGridViewEditMode.EditOnEnter; // Set EditMode to EditOnEnter
          dataGridViewDictionary.Location = new Point(406, 215);
          dataGridViewDictionary.MultiSelect = false;
          dataGridViewDictionary.Name = "dataGridViewDictionary";
@@ -174,12 +175,14 @@
          dataGridViewDictionary.Size = new Size(639, 722);
          dataGridViewDictionary.TabIndex = 9;
          dataGridViewDictionary.CellContentClick += dataGridViewDictionary_CellContentClick_1;
+         dataGridViewDictionary.SelectionChanged += dataGridViewDictionary_SelectionChanged; // Add SelectionChanged event handler
+         dataGridViewDictionary.CellEndEdit += dataGridViewDictionary_CellEndEdit; // Add CellEndEdit event handler
          // 
          // dataGridViewTextBoxColumn1
          // 
          dataGridViewTextBoxColumn1.HeaderText = "ID";
          dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-         dataGridViewTextBoxColumn1.ReadOnly = true;
+         dataGridViewTextBoxColumn1.ReadOnly = true; // Set ReadOnly to true
          dataGridViewTextBoxColumn1.Width = 50;
          // 
          // dataGridViewTextBoxColumn2
@@ -289,5 +292,28 @@
       }
       private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
       private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+
+      private void dataGridViewDictionary_SelectionChanged(object sender, EventArgs e)
+      {
+         foreach (DataGridViewCell cell in dataGridViewDictionary.SelectedCells)
+         {
+            if (cell.ColumnIndex == dataGridViewTextBoxColumn1.Index)
+            {
+               cell.Selected = false;
+            }
+         }
+      }
+
+      private void dataGridViewDictionary_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+      {
+         if (e.ColumnIndex == dataGridViewTextBoxColumn2.Index)
+         {
+            var cell = dataGridViewDictionary.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            if (cell.Value != null)
+            {
+               cell.Value = cell.Value.ToString().Trim();
+            }
+         }
+      }
    }
 }
